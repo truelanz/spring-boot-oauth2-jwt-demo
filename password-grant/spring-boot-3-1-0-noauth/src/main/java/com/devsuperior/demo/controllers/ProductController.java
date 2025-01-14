@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +30,14 @@ public class ProductController {
 		return ResponseEntity.ok(list);
 	}
 	
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')") //somente admins e operator podem acessar essa rota
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
         ProductDTO dto = productService.findById(id);
         return ResponseEntity.ok(dto);
     }
 	
+    @PreAuthorize("hasRole('ROLE_ADMIN')") //Somente admins podem acessar essa rota
     @PostMapping
     public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
         dto = productService.insert(dto);

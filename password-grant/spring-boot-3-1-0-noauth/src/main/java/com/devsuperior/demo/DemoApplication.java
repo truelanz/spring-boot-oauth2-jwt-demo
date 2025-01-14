@@ -9,8 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner{
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	/* @Autowired
+	private PasswordEncoder passwordEncoder; */
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -18,12 +18,12 @@ public class DemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		//Criptografando password
+	/* 	//Criptografando password
 		System.out.println("\nEncode = " + passwordEncoder.encode("123456"));
 
 		//Comparando password criptografado com password digitado
 		boolean encodeCompare = passwordEncoder.matches("123456", "$2a$10$oqz4hKEOgVHafUbYlXJ32e.fp1rFua6O0Xep3yGWGfv6qLS9uTdq6");
 		System.out.println("Senha está correta? " + encodeCompare);
+	} */
 	}
-
 }
